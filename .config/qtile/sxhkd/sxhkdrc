@@ -1,0 +1,102 @@
+#+title: sxhkd config
+#+author: Alaa eddine
+
+##############################
+# SUPER + KEYS
+##############################
+
+# thorium
+super + b
+    brave-browser
+   
+# Discord
+super + d
+    flatpak run com.discordapp.Discord
+
+# xfce4-terminal
+alt + Return
+    xfce4-terminal
+
+# Xkill
+super + Escape
+    xkill
+
+# Flameshot (screenshot tool)
+control + shift + s
+    flameshot gui
+
+# Lockscreen
+super + l
+    betterlockscreen -l
+
+# Clipman
+super + v
+    xfce4-popup-clipman
+
+# Rofi shutdown/reboot
+alt + Escape
+    rofi -show power-menu -modi power-menu:~/.local/bin/rofi-power-menu
+
+##############################
+# SUPER + SHIFT KEYS
+##############################
+
+# File-Manager
+super + f
+    thunar
+
+# dmenu
+# super + shift + m
+#     dmenu_run -i -nb '#2e3440' -nf '#81a1c1' -sb '#81a1c1' -sf '#2e3440' -fn 'SourceCodeProBoldFont:pixelsize=15'
+
+# Reload sxhkd:
+super + shift + s
+    pkill -USR1 -x sxhkd
+
+# Rofi
+alt + p
+    rofi -show drun
+
+# Rofi
+alt + w
+    rofi -show window
+
+# firefox
+super + shift + b 
+    thorium-browser
+
+# Spotify
+super + s
+    flatpak run com.spotify.Client
+
+# # Thunderbird
+# super + shift + t
+#     thunderbird
+
+#################################################################
+# CONTROL + SHIFT KEYS
+#################################################################
+
+#Xcfe4-TaskManager
+ctrl + shift + Escape
+    xfce4-taskmanager
+
+
+#################################################################
+#     MULTIMEDIA KEYS
+#################################################################
+
+#Raises volume
+XF86AudioRaiseVolume
+    amixer set Master 3%+
+
+#Lowers volume
+XF86AudioLowerVolume
+    amixer set Master 3%-
+
+#Mute
+XF86AudioMute
+    amixer -D pulse set Master 1+ toggle
+
+#####################################################
+

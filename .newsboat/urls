@@ -1,0 +1,18 @@
+"query:news:tags # \"news\""
+"query:twitter:tags # \"twitter\""
+"query:blog:tags # \"blog\""
+"query:yt:tags # \"yt\""
+"---NEWS---" 
+http://feeds.feedburner.com/zerohedge/feed news
+
+"---TWITTER---" 
+https://rss.app/feeds/cwRYPqXHPznufB7Z.xml twitter
+
+"---BLOG---" 
+https://christitus.com/categories/linux/index.xml blog
+https://lukesmith.xyz/index.xml blog
+https://vkc.sh/feed blog
+
+"---YOUTUBE---"
+https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA yt
+https://www.youtube.com/feeds/videos.xml?channel_id=UCtYg149E_wUGVmjGz-TgyNA yt
