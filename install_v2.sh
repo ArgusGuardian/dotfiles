@@ -77,6 +77,7 @@ echo "Terminal theme setup complete.\n"
 # installing nvchad
 echo "installing nvchad...\n"
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+
 # Copy configuration files
 config_files=(
     .bashrc
