@@ -46,7 +46,7 @@ dnf copr enable frostyx/qtile
 
 # Install essentials
 packages=(
-    rofi newsboat lxappearance qt5ct nitrogen sxhkd picom qtile qtile-extras dunst network-manager-applet xfce4-power-manager numlockx blueman polkit-gnome xfce4-notifyd xfce4-notifyd volumeicon kitty ranger brave-browser bleachbit btop mpv flameshot geany neofetch thunar catfish eog gnome-disk-utility celluloid timeshift xfce4-terminal git curl neovim python3-neovim
+    rofi newsboat unzip lxappearance qt5ct nitrogen sxhkd picom qtile qtile-extras dunst network-manager-applet xfce4-power-manager numlockx blueman polkit-gnome xfce4-notifyd xfce4-notifyd volumeicon kitty ranger brave-browser bleachbit btop mpv flameshot geany neofetch thunar catfish eog gnome-disk-utility celluloid timeshift xfce4-terminal git curl neovim python3-neovim
 )
 
 echo "installing packages\n"
@@ -59,10 +59,9 @@ nerd_font_url="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/
 nerd_font_dir="/home/alaa/.local/share/fonts"
 
 echo "Downloading and installing Nerd Font...\n"
-curl -O $nerd_font_url
-unzip -o IosevkaTerm.zip
+wget $nerd_font_url
 mkdir -p $nerd_font_dir
-mv *.ttf $nerd_font_dir
+unzip IosevkaTerm.zip -d $nerd_font_dir
 fc-cache -fv
 
 echo "fonts installed\n"
@@ -86,7 +85,7 @@ config_files=(
     .icons
     .themes
     .gtkrc-2.0
-    newsboat
+    .newsboat
 )
 
 for file in "${config_files[@]}"; do
@@ -98,4 +97,5 @@ cp -r rofi/rofi $HOME/.local/share/
 
 
 echo "Setup complete!\n"
-echo "you should run neovim to complete the nvchad installation\n"
+echo "run neovim to complete the nvchad installation\n"
+nvim
