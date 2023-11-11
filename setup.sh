@@ -36,9 +36,16 @@ function add_repo {
     fi
 }
 
+# get the username
+read -p "Please enter the system username: " User
+if [ -z "$User" ]; then
+    echo "Error: Username cannot be empty. Exiting."
+    exit 1
+fi
+
 # Update the system
 echo "updating the system\n"
-sudo dnf update
+sudo dnf -y update
 echo "system updated\n"
 
 
@@ -48,7 +55,7 @@ dnf copr enable frostyx/qtile
 
 # Install essentials
 packages=(
-    rofi newsboat unzip lxappearance qt5ct nitrogen sxhkd picom qtile qtile-extras dunst network-manager-applet xfce4-power-manager numlockx blueman polkit-gnome xfce4-notifyd xfce4-notifyd volumeicon kitty ranger brave-browser bleachbit btop mpv flameshot geany neofetch thunar catfish eog gnome-disk-utility celluloid timeshift xfce4-terminal git curl neovim python3-neovim
+    rofi newsboat unzip lxappearance qt5ct nitrogen sxhkd picom qtile qtile-extras dunst network-manager-applet xfce4-power-manager numlockx blueman xfce-polkit xfce4-notifyd xfce4-notifyd volumeicon kitty ranger brave-browser bleachbit btop mpv flameshot geany neofetch thunar catfish eog gnome-disk-utility celluloid timeshift xfce4-terminal git curl neovim python3-neovim
 )
 
 echo "installing packages\n"
@@ -60,13 +67,14 @@ echo "packages installed\n"
 
 # Download and install nerdfont
 nerd_font_url="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/IosevkaTerm.zip"
-nerd_font_dir="/home/"USER_NAME_HERE"/.local/share/fonts"
+nerd_font_dir="/home/$User/.local/share/fonts"
 
 echo "Downloading and installing Nerd Font...\n"
 wget $nerd_font_url
 mkdir -p $nerd_font_dir
 unzip IosevkaTerm.zip -d $nerd_font_dir
 fc-cache -fv
+rm IosevkaTerm.zip
 
 echo "fonts installed\n"
 
@@ -76,6 +84,7 @@ git clone https://github.com/ChrisTitusTech/mybash.git
 cd mybash
 ./setup.sh
 echo "Terminal theme setup complete.\n"
+cd ..
 
 # installing nvchad
 echo "installing nvchad...\n"
@@ -93,11 +102,11 @@ config_files=(
 )
 
 for file in "${config_files[@]}"; do
-    sudo cp -r $file /home/"USER_NAME_HERE"/
+    sudo cp -r $file /home/$User/
 done
 
-cp rofi/rofi-power-menu /home/"USER_NAME_HERE"/.local/bin/
-cp -r rofi/rofi /home/"USER_NAME_HERE"/.local/share/
+sudo cp rofi/rofi-power-menu /home/$User/.local/bin/
+sudo cp -r rofi/rofi /home/$User/.local/share/
 
 
 echo "Setup complete!\n"
