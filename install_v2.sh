@@ -40,6 +40,8 @@ function add_repo {
 echo "updating the system\n"
 sudo dnf update
 echo "system updated\n"
+
+
 # Add repositories
 add_repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 dnf copr enable frostyx/qtile
@@ -54,9 +56,11 @@ for package in "${packages[@]}"; do
     install_package $package
 done
 echo "packages installed\n"
+
+
 # Download and install nerdfont
 nerd_font_url="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/IosevkaTerm.zip"
-nerd_font_dir="/home/alaa/.local/share/fonts"
+nerd_font_dir="/home/"USER_NAME_HERE"/.local/share/fonts"
 
 echo "Downloading and installing Nerd Font...\n"
 wget $nerd_font_url
@@ -89,11 +93,11 @@ config_files=(
 )
 
 for file in "${config_files[@]}"; do
-    cp -r $file $HOME/
+    sudo cp -r $file /home/"USER_NAME_HERE"/
 done
 
-cp rofi/rofi-power-menu $HOME/.local/bin/
-cp -r rofi/rofi $HOME/.local/share/
+cp rofi/rofi-power-menu /home/"USER_NAME_HERE"/.local/bin/
+cp -r rofi/rofi /home/"USER_NAME_HERE"/.local/share/
 
 
 echo "Setup complete!\n"
