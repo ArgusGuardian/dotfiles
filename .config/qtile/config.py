@@ -19,13 +19,13 @@ os.environ['GTK_THEME'] = "Nordic-darker"
 
 mod = "mod1"
 mod1 = "mod4"
-#terminal = "kitty"
+terminal = "kitty"
 
 colors, backgroundColor, foregroundColor, workspaceColor, chordColor = colors.nord()
 
 keys = [
 # Open terminal
-    #Key([mod], "Return", lazy.spawn(terminal)),
+    Key([mod], "Return", lazy.spawn(terminal)),
 # Qtile System Actions
     Key([mod, "control"], "r", lazy.restart()),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
@@ -169,7 +169,7 @@ layout_theme = {
 
 layouts = [
     layout.MonadTall(**layout_theme),
-    #layout.MonadWide(**layout_theme),
+    layout.MonadThreeCol(**layout_theme),
     layout.Floating(**layout_theme),
     #layout.RatioTile(**layout_theme),
     layout.Max(**layout_theme)
@@ -334,6 +334,7 @@ floating_layout = layout.Floating(float_rules=[
     Match(title='branchdialog'),  # gitk
     Match(title='pinentry'),  # GPG key password entry
     Match(wm_class='xdm-app'),
+    Match(wm_class='nitrogen'),
 ], fullscreen_border_width = 0, border_width = 0)
 auto_fullscreen = True
 focus_on_window_activation = "smart"

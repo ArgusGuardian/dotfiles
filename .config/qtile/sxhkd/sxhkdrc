@@ -22,8 +22,8 @@ super + d
     flatpak run com.discordapp.Discord
 
 # xfce4-terminal
-alt + Return
-    xfce4-terminal
+#alt + Return
+#    xfce4-terminal
 
 # Xkill
 super + Escape
@@ -108,3 +108,30 @@ XF86AudioMute
 
 #####################################################
 
+#Picom Toggle
+ctrl + alt + p
+    ~/.config/qtile/scripts/picom-toggle.sh
+
+#################################################################
+#VARIETY KEYS WITH PYWAL
+#################################################################
+
+Wallpaper trash
+ctrl + super + t
+    variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
+
+#Wallpaper next
+ctrl + super + n
+    variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
+
+#Wallpaper previous
+ctrl + super + p
+    variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
+
+# #Wallpaper favorite
+# ctrl + super + f
+#     variety -f && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
+
+# #Wallpaper update
+# ctrl + super + u
+#     wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
