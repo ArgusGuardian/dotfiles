@@ -55,7 +55,7 @@ dnf copr enable frostyx/qtile
 
 # Install essentials
 packages=(
-    rofi newsboat unzip lxappearance qt5ct nitrogen sxhkd picom qtile qtile-extras dunst network-manager-applet xfce4-power-manager numlockx blueman xfce-polkit xfce4-notifyd xfce4-notifyd volumeicon kitty ranger brave-browser bleachbit btop mpv flameshot geany neofetch thunar catfish eog gnome-disk-utility celluloid timeshift xfce4-terminal git curl neovim python3-neovim
+    rofi newsboat unzip lxappearance qt5ct nitrogen sxhkd picom qtile qtile-extras dunst network-manager-applet xfce4-power-manager numlockx blueman xfce-polkit xfce4-notifyd xfce4-notifyd volumeicon kitty ranger brave-browser bleachbit btop mpv flameshot geany neofetch thunar catfish eog gnome-disk-utility celluloid timeshift xfce4-terminal git curl neovim python3-neovim variety imagemagick
 )
 
 echo "installing packages\n"
@@ -64,7 +64,8 @@ for package in "${packages[@]}"; do
 done
 echo "packages installed\n"
 
-
+# install pywall
+sudo pip3 install pywal
 # Download and install nerdfont
 nerd_font_url="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/IosevkaTerm.zip"
 nerd_font_dir="/home/$User/.local/share/fonts"
