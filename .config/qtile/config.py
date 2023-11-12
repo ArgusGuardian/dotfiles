@@ -144,7 +144,8 @@ groups.append(ScratchPad("scratchpad", [
     DropDown("ranger", "kitty --class=ranger -e ranger", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.9),
     DropDown("news", "kitty --class=news -e newsboat", width=0.8, height=0.8, x=0.1, y=0.1, opacity=0.9),
     DropDown("catfish","catfish", width = 0.4, height=0.7, x=0.3, y=0.1,opacity=0.9 ),
-
+    #DropDown("xdm","xdm-app", width = 0.3, height=0.7, x=0.4, y=0.1,opacity=0.9 ),
+    #DropDown("notion", "brave-browser --app=https://notion.com", width = 0.4, height = 0.7, x = 0.3, y = 0.1, opacity = 0.9),
 ]))
 
 # Scratchpad keybindings
@@ -153,7 +154,8 @@ keys.extend([
     Key([mod], "f", lazy.group['scratchpad'].dropdown_toggle('ranger')),
     Key([mod], "n", lazy.group['scratchpad'].dropdown_toggle('news')),
     Key([mod], "s", lazy.group['scratchpad'].dropdown_toggle('catfish')),
-
+    #Key([mod], "x", lazy.group['scratchpad'].dropdown_toggle('xdm')),
+    #Key([mod], "m", lazy.group['scratchpad'].dropdown_toggle('notion')),
 ])
 
 
@@ -242,23 +244,29 @@ def init_widgets_list(monitor_num):
         ),
         widget.Sep(linewidth = 1, padding = 10, foreground = colors[0],background = colors[0]),
         widget.Sep(linewidth = 1, padding = 10, foreground = colors[0],background = backgroundColor),
+        widget.Net(
+            format='{down} ↓↑{up}',
+            font = "IosevkaTerm Nerd Font Bold",
+            foreground = foregroundColor,
+            padding = 5,),
+        widget.Sep(linewidth = 1, padding = 10, foreground = colors[5],background = colors[0]),
         widget.CPU(
             font = "IosevkaTerm Nerd Font Bold",
             update_interval = 1.0,
             foreground = foregroundColor,
             padding = 5,
-            format = '{freq_current}GHz {load_percent}%',
+            format = '{freq_current}/{load_percent}%',
         ),
-        widget.TextBox(text = "󰧑 ", fontsize = 16, font = "IosevkaTerm Nerd Font Bold", foreground = colors[7]),
+        widget.TextBox(text = " 󰻠 ", fontsize = 16, font = "IosevkaTerm Nerd Font Bold", foreground = colors[7]),
         widget.Sep(linewidth = 1, padding = 10, foreground = colors[5],background = colors[0]),
         widget.Memory(
             font = "IosevkaTerm Nerd Font Bold",
             foreground = foregroundColor,
-            format = '{MemUsed: .0f}{mm} /{MemTotal: .0f}{mm}',
+            format = '{MemPercent}%',
             measure_mem='G',
             padding = 5,
         ),
-        widget.TextBox(text = "󰍛 ", fontsize = 16, font = "IosevkaTerm Nerd Font Bold", foreground = colors[3]),
+        widget.TextBox(text = " 󰍛 ", fontsize = 16, font = "IosevkaTerm Nerd Font Bold", foreground = colors[3]),
         widget.Sep(linewidth = 1, padding = 10, foreground = colors[5],background = colors[0]),
         widget.KeyboardLayout(
 			configured_keyboards=['us','ar'],
@@ -325,6 +333,7 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='ssh-askpass'),  # ssh-askpass
     Match(title='branchdialog'),  # gitk
     Match(title='pinentry'),  # GPG key password entry
+    Match(wm_class='xdm-app'),
 ], fullscreen_border_width = 0, border_width = 0)
 auto_fullscreen = True
 focus_on_window_activation = "smart"

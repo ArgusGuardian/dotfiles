@@ -26,7 +26,8 @@ blueman-applet &
 #blueberry-tray &
 picom --config $HOME/.config/qtile/scripts/picom.conf &
 /usr/lib/polkit-1/polkitd %
-/usr/libexec/xfce-polkit & # this is how you strat the polkit in fedora xfce version
+/usr/libexec/xfce-polkit &
+#/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
 /usr/bin/dunst &
 

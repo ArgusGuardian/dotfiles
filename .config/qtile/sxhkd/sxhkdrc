@@ -9,6 +9,14 @@
 super + b
     brave-browser
    
+# ChatGpt
+super + g 
+    brave-browser --app=https://chat.openai.com
+
+# Notion
+super + n
+    brave-browser --app=https://notion.com
+
 # Discord
 super + d
     flatpak run com.discordapp.Discord
