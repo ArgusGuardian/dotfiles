@@ -1,12 +1,10 @@
 #!/bin/bash
 
 function run {
-  if ! pgrep -x $(basename $1 | head -c 15) 1>/dev/null;
-  then
-    $@&
-  fi
+	if ! pgrep -x $(basename $1 | head -c 15) 1>/dev/null; then
+		$@ &
+	fi
 }
-
 
 # Wallpaper #
 run variety &
@@ -15,7 +13,6 @@ wal -R &
 
 # SXHKD #
 run sxhkd -c ~/.config/qtile/sxhkd/sxhkdrc &
-
 
 # Utility Applications #
 run nm-applet &
@@ -30,7 +27,6 @@ picom --config $HOME/.config/qtile/scripts/picom.conf &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
 /usr/bin/dunst &
 xdm-app &
-
 
 # clipboard startup
 xfce4-clipman &

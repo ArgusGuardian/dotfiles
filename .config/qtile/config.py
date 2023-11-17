@@ -9,6 +9,7 @@ from libqtile.config import Click, Drag, Group, ScratchPad, DropDown, Key, Match
 from libqtile.lazy import lazy
 from settings.path import qtile_path
 from qtile_extras import widget
+from qtile_extras.widget.decorations import BorderDecoration
 
 import colors
 
@@ -27,7 +28,7 @@ keys = [
 # Open terminal
     Key([mod], "Return", lazy.spawn(terminal)),
 # Qtile System Actions
-    Key([mod, "control"], "r", lazy.restart()),
+    #Key([mod, "control"], "r", lazy.restart()),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "m", lazy.window.toggle_fullscreen()),
 
@@ -112,7 +113,7 @@ groups = []
 
 group_names = ["1", "2", "3", "4", "5"]
 
-group_labels = [" ", "󰨞 ", " ", " ", "󰓇 "]
+group_labels = [" ", "󰅵 ", " ", " ", " "]
 #group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
 
 group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "max"]
@@ -162,7 +163,7 @@ keys.extend([
 # Define layouts and layout themes
 layout_theme = {
         "margin":10,
-        "border_width": 1,
+        "border_width": 2,
         "border_focus": colors[2],
         "border_normal": backgroundColor
     }
@@ -206,7 +207,7 @@ def init_widgets_list(monitor_num):
             rounded = False,
             highlight_method = "line",
             highlight_color = [backgroundColor, backgroundColor],
-            this_current_screen_border = colors[5],
+            this_current_screen_border = colors[7],
             this_screen_border = colors[7],
             other_screen_border = colors[6],
             other_current_screen_border = colors[6],
@@ -217,7 +218,7 @@ def init_widgets_list(monitor_num):
             background = backgroundColor,
             use_mouse_wheel = False
         ),
-        widget.Sep(linewidth = 1, padding = 10, foreground = colors[5],background = backgroundColor),
+        widget.Sep(linewidth = 2, padding = 10, foreground = colors[7],background = backgroundColor),
         #widget.TaskList(
          #   icon_size = 15,
           #  font = "IosevkaTerm Nerd Font Bold",
@@ -244,40 +245,59 @@ def init_widgets_list(monitor_num):
         ),
         widget.Sep(linewidth = 1, padding = 10, foreground = colors[0],background = colors[0]),
         widget.Sep(linewidth = 1, padding = 10, foreground = colors[0],background = backgroundColor),
+        widget.Systray(
+            background = backgroundColor, 
+            icon_size = 20, 
+            padding = 4,
+            ),
+        # widget.Sep(linewidth = 1, padding = 10, foreground = colors[0],background = colors[0]),
+        widget.Spacer(length = 8),
         widget.Net(
             format='{down} ↓↑{up}',
             font = "IosevkaTerm Nerd Font Bold",
             foreground = foregroundColor,
-            padding = 5,),
-        widget.Sep(linewidth = 1, padding = 10, foreground = colors[5],background = colors[0]),
+            padding = 5,
+            decorations=[
+                     BorderDecoration(
+                         colour = colors[3],
+                         border_width = [0, 0, 2, 0],
+                     )
+                 ],
+        ),
+        #widget.Sep(linewidth = 1, padding = 10, foreground = colors[5],background = colors[0]),
+        widget.Spacer(length = 8),
         widget.CPU(
             font = "IosevkaTerm Nerd Font Bold",
             update_interval = 1.0,
             foreground = foregroundColor,
             padding = 5,
             format = '{freq_current}/{load_percent}%',
+            decorations=[
+                     BorderDecoration(
+                         colour = colors[7],
+                         border_width = [0, 0, 2, 0],
+                     )
+                 ],
         ),
-        widget.TextBox(text = " 󰻠 ", fontsize = 16, font = "IosevkaTerm Nerd Font Bold", foreground = colors[7]),
-        widget.Sep(linewidth = 1, padding = 10, foreground = colors[5],background = colors[0]),
+        #widget.TextBox(text = " 󰻠 ", fontsize = 16, font = "IosevkaTerm Nerd Font Bold", foreground = colors[7]),
+        #widget.Sep(linewidth = 1, padding = 10, foreground = colors[5],background = colors[0]),
+        widget.Spacer(length = 8),
         widget.Memory(
             font = "IosevkaTerm Nerd Font Bold",
             foreground = foregroundColor,
             format = '{MemPercent}%',
             measure_mem='G',
             padding = 5,
+            decorations=[
+                     BorderDecoration(
+                         colour = colors[3],
+                         border_width = [0, 0, 2, 0],
+                     )
+                 ],
         ),
-        widget.TextBox(text = " 󰍛 ", fontsize = 16, font = "IosevkaTerm Nerd Font Bold", foreground = colors[3]),
-        widget.Sep(linewidth = 1, padding = 10, foreground = colors[5],background = colors[0]),
-        widget.KeyboardLayout(
-			configured_keyboards=['us','ar'],
-			font = "IosevkaTerm Nerd Font Bold",
-            foreground = foregroundColor, 
-        ),
-        widget.TextBox(text = "  ", fontsize = 16, font = "IosevkaTerm Nerd Font Bold", foreground = colors[6]),
-        widget.Sep(linewidth = 1, padding = 10, foreground = colors[5],background = colors[0]),
-        widget.Clock(format='%a %d %b  %H:%M', font = "IosevkaTerm Nerd Font Bold", padding = 10, foreground = foregroundColor),
-        widget.TextBox(text = " ", fontsize = 16, font = "IosevkaTerm Nerd Font Bold", foreground = colors[10]),
-        widget.Sep(linewidth = 1, padding = 10, foreground = colors[5],background = colors[0]),
+        #widget.TextBox(text = " 󰍛 ", fontsize = 16, font = "IosevkaTerm Nerd Font Bold", foreground = colors[3]),
+        # widget.Sep(linewidth = 1, padding = 10, foreground = colors[5],background = colors[0]),
+        widget.Spacer(length = 8),
         widget.UPowerWidget(
                         border_colour = '#d8dee9',
                         border_critical_colour = '#bf616a',
@@ -288,9 +308,44 @@ def init_widgets_list(monitor_num):
                         fill_normal = '#d8dee9',
                         percentage_low = 0.4,
                         percentage_critical = 0.2,
-                        font = "IosevkaTerm Nerd Font"
+                        font = "IosevkaTerm Nerd Font",
+                        decorations=[
+                            BorderDecoration(
+                            colour = colors[4],
+                            border_width = [0, 0, 2, 0],
+                            )
+                        ],
         ),
-        widget.Systray(background = backgroundColor, icon_size = 20, padding = 4),
+        widget.Spacer(length = 8),
+        widget.KeyboardLayout(
+			configured_keyboards=['us','ar'],
+			font = "IosevkaTerm Nerd Font Bold",
+            foreground = foregroundColor,
+            decorations=[
+                     BorderDecoration(
+                         colour = colors[6],
+                         border_width = [0, 0, 2, 0],
+                     )
+                 ],
+        ),
+        #widget.TextBox(text = "  ", fontsize = 16, font = "IosevkaTerm Nerd Font Bold", foreground = colors[6]),
+        # widget.Sep(linewidth = 1, padding = 10, foreground = colors[0],background = colors[0]),
+        widget.Spacer(length = 8),
+        # widget.TextBox(text = " ", fontsize = 16, font = "IosevkaTerm Nerd Font Bold", foreground = colors[10]),
+        widget.Clock(
+            format='%H:%M  %a %d %b',
+            font = "IosevkaTerm Nerd Font Bold", 
+            padding = 10, 
+            foreground = foregroundColor,
+            decorations=[
+                     BorderDecoration(
+                         colour = colors[10],
+                         border_width = [0, 0, 2, 0],
+                     )
+                 ],
+
+            ),
+        # widget.Sep(linewidth = 1, padding = 10, foreground = colors[5],background = colors[0]),
     ]
 
     return widgets_list
