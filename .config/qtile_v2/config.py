@@ -9,7 +9,7 @@ from libqtile.lazy import lazy
 from settings.path import qtile_path
 from qtile_extras import widget
 from qtile_extras.widget.decorations import BorderDecoration
-from qtile_extras.widget.decorations import RectDecoration, PowerLineDecoration
+from qtile_extras.widget.decorations import RectDecoration
 
 import colors
 
@@ -113,7 +113,7 @@ groups = []
 
 group_names = ["1", "2", "3", "4", "5"]
 
-group_labels = [" ", " ", " ", " ", " "]
+group_labels = [" ", "󰅵 ", " ", " ", " "]
 #group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
 
 group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "max"]
@@ -184,18 +184,14 @@ widget_defaults = dict(
     font="IosevkaTerm Nerd Font",
     fontsize = 16,
     padding = 2,
-    background=backgroundColor,
+    background=backgroundColor
 )
 
 def init_widgets_list(monitor_num):
     widgets_list = [
-        widget.CurrentLayoutIcon(
-            scale = 0.8,
-            foreground = colors[4], 
-            #background = colors[4]
-        ),
+        widget.CurrentLayoutIcon(scale = 0.6, foreground = colors[4], background = colors[4]),
         widget.Spacer(length = 8),
-        widget.TextBox( text="󰇙", foreground=foregroundColor, fontsize=20),
+        widget.TextBox( text="󰇙", foreground=foregroundColor),
         widget.GroupBox(
             font="IosevkaTerm Nerd Font Bold",
             fontsize = 20,
@@ -222,7 +218,7 @@ def init_widgets_list(monitor_num):
             background = backgroundColor,
             use_mouse_wheel = False
         ),
-        widget.TextBox( text="󰇙", foreground=foregroundColor, fontsize=20),
+        widget.TextBox( text="󰇙", foreground=foregroundColor),
         widget.Spacer(length = 8),
         widget.CheckUpdates(
             distro='Fedora',
@@ -230,22 +226,23 @@ def init_widgets_list(monitor_num):
             display_format=' 󰬬  {updates} ',
             colour_have_updates=foregroundColor,
             colour_no_updates=foregroundColor,
-            background=colors[7],
             update_interval=43200,
             decorations=[
                 #  BorderDecoration(
                 #      colour = colors[3],
                 #      border_width = [0, 0, 2, 0],
                 #  ),
-                RectDecoration(
-                filled = True,
-                radius = [10, 10, 10,10],
-                use_widget_background = True,
-                ),  
+                RectDecoration (
+                    colour = colors[7],
+                    padding_y = 3,
+                    padding_x = 0,
+                    radius = 10,
+                    filled = True,
+                )
                 ],
         ),
         widget.Spacer(length = 8),
-        widget.TextBox( text="󰇙", foreground=foregroundColor, fontsize=20),
+        widget.TextBox( text="󰇙", foreground=foregroundColor),
         widget.Spacer(length = 8),
         # widget.Sep(linewidth = 2, padding = 10, foreground = colors[7],background = backgroundColor),
         widget.WindowName(
@@ -256,67 +253,57 @@ def init_widgets_list(monitor_num):
         ),
         widget.Sep(linewidth = 1, padding = 10, foreground = colors[0],background = colors[0]),
         widget.Sep(linewidth = 1, padding = 10, foreground = colors[0],background = backgroundColor),
-        widget.Systray(
-             background = backgroundColor, 
-             icon_size = 20, 
-             padding = 4,
-             ),
+        # widget.Systray(
+        #     background = backgroundColor, 
+        #     icon_size = 20, 
+        #     padding = 4,
+        #     ),
         widget.Spacer(length = 8),
         widget.Net(
             format=' 󰬦 {down} ',
             font = "IosevkaTerm Nerd Font Bold",
             foreground = foregroundColor,
-            background=colors[3],
-            padding = 3,
-            padding_y = -3,
+            padding = 5,
             decorations=[
                 #  BorderDecoration(
                 #      colour = colors[3],
                 #      border_width = [0, 0, 2, 0],
                 #  ),
-                RectDecoration(
+                RectDecoration (
+                    colour = colors[3],
+                    padding_y = 3,
+                    padding_x = 0,
+                    radius = 10,
                     filled = True,
-                    radius = [10, 0, 0, 10],
-                    use_widget_background = True,
-                ), 
-                PowerLineDecoration(
-                    path='arrow_right',
-                    size=10,
                 )
                 ],
         ),
-        #widget.Spacer(length = 8),
+        widget.Spacer(length = 8),
         widget.CPU(
             font = "IosevkaTerm Nerd Font Bold",
             update_interval = 1.0,
             foreground = foregroundColor,
-            background=colors[7],
             padding = 5,
-            format = '󰗶  {freq_current}/{load_percent}% ',
+            format = '   {freq_current}/{load_percent}% ',
             decorations=[
                 #  BorderDecoration(
                 #      colour = colors[7],
                 #      border_width = [0, 0, 2, 0],
                 #  ),
-                #RectDecoration (
-                #   colour = colors[7],
-                #   padding_y = 3,
-                #   padding_x = 0,
-                #   radius = 10,
-                #   filled = True,
-                #),
-                PowerLineDecoration(
-                    path='arrow_right',
-                    size=10,
+                RectDecoration (
+                    colour = colors[7],
+                    padding_y = 3,
+                    padding_x = 0,
+                    radius = 10,
+                    filled = True,
                 )
                 ],
         ),
-        #widget.Spacer(length = 8),
+        widget.Spacer(length = 8),
         widget.Memory(
             font = "IosevkaTerm Nerd Font Bold",
             foreground = foregroundColor,
-            background=colors[6],
-            format = "  {MemPercent}%",
+            format = " 󰍛  {MemPercent}% ",
             measure_mem='G',
             padding = 5,
             decorations=[
@@ -324,66 +311,32 @@ def init_widgets_list(monitor_num):
                 #      colour = colors[3],
                 #      border_width = [0, 0, 2, 0],
                 #  ),
-                #RectDecoration (
-                #   colour = colors[3],
-                #   padding_y = 3,
-                #   padding_x = 0,
-                #   radius = 10,
-                #   filled = True,
-                #),
-                PowerLineDecoration(
-                    path='arrow_right',
-                    size=10,
+                RectDecoration (
+                    colour = colors[3],
+                    padding_y = 3,
+                    padding_x = 0,
+                    radius = 10,
+                    filled = True,
                 )
                 ],
         ),
-        #widget.Spacer(length = 8),
-        widget.KeyboardLayout(
-			configured_keyboards=['us','ar'],
-			font = "IosevkaTerm Nerd Font Bold",
-            display_map={'us':'🇺🇸','ar':'🇲🇦'},
-            foreground = foregroundColor,
-            background=colors[3],
-            decorations=[
-                    #  BorderDecoration(
-                    #      colour = colors[6],
-                    #      border_width = [0, 0, 2, 0],
-                    #  ),
-                    PowerLineDecoration(
-                        path='arrow_right',
-                        size=10,
-                ),
-                    # RectDecoration (
-                    #     colour = colors[6],
-                    #     padding_y = 3,
-                    #     radius = 2,
-                    #     filled = True
-                # )
-                 ],
-        ),
+        widget.Spacer(length = 8),
         widget.Battery(
             format = " 󰁹 {percent:2.0%} ",
             font = "IosevkaTerm Nerd Font Bold",
-            foreground = foregroundColor,
-            low_foreground='#eb4034',
-            low_percentage=0.2,
-            background=colors[4],
             update_interval = 180,
-            full_char=' 󰁹 100%',
             decorations=[
                 # BorderDecoration(
                 # colour = colors[4],
                 # border_width = [0, 0, 2, 0],
                 # ),
-                RectDecoration(
+                RectDecoration (
+                    colour = colors[10],
+                    padding_y = 3,
+                    padding_x = 0,
+                    radius = 10,
                     filled = True,
-                    radius = [0, 10, 10, 0],
-                    use_widget_background = True,
-                ),                
-                #PowerLineDecoration(
-                #   path='arrow_right',
-                #   size=10,
-                #)
+                )
                 ],
             ),
         # widget.UPowerWidget(
@@ -412,34 +365,53 @@ def init_widgets_list(monitor_num):
         #         ],
         # ),
         # widget.Spacer(length = 8),
+        # widget.KeyboardLayout(
+		# 	configured_keyboards=['us','ar'],
+		# 	font = "IosevkaTerm Nerd Font Bold",
+        #     foreground = foregroundColor,
+        #     decorations=[
+        #             #  BorderDecoration(
+        #             #      colour = colors[6],
+        #             #      border_width = [0, 0, 2, 0],
+        #             #  ),
+        #              RectDecoration (
+        #                 colour = colors[6],
+        #                 padding_y = 3,
+        #                 radius = 2,
+        #                 filled = True
+        #             )
+        #          ],
+        # ),
         widget.Spacer(length = 8),
-        widget.TextBox( text="󰇙", foreground=foregroundColor, fontsize=20),
+        widget.TextBox( text="󰇙", foreground=foregroundColor),
         widget.Spacer(length = 8),
         widget.Clock(
             format='  %a %d %b - %H:%M',
             font = "IosevkaTerm Nerd Font Bold", 
             padding = 10,
             foreground = foregroundColor,
-            background=colors[4],
             decorations=[
                 #  BorderDecoration(
                 #      colour = colors[10],
                 #      border_width = [0, 0, 2, 0],
                 #  ),
-                    RectDecoration(
+                    RectDecoration (
+                    colour = colors[4],
+                    padding_y = 3,
+                    padding_x = 0,
+                    radius = 10,
                     filled = True,
-                    radius = [10, 10, 10, 10],
-                    use_widget_background = True,
-                ), 
+                )
                 ],
             ),
+        widget.Spacer(length = 2),
     ]
     return widgets_list
 
 widgets_list = init_widgets_list("1")
 
 screens = [
-    Screen(top=bar.Bar(border_width= 4,border_color=backgroundColor,widgets=widgets_list, size=24, background=backgroundColor, margin=[0,0,0,0], opacity=0.8),),
+    Screen(top=bar.Bar(widgets=widgets_list, size=28, background=backgroundColor, margin=[10,10,0,10], opacity=0.8),),
     ]
 
 # Drag floating layouts.

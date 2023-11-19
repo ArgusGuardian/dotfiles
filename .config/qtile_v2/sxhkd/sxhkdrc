@@ -37,9 +37,6 @@ super + Escape
 control + shift + s
     flameshot gui
 
-# flameshot screenshot
-super + alt + s
-    flameshot full -p /home/alaa/Pictures/Screenshots/
 # Lockscreen
 super + l
     betterlockscreen -l
@@ -47,10 +44,6 @@ super + l
 # Clipman
 super + v
     xfce4-popup-clipman
-
-#############################
-# Rpfi keys
-#############################
 
 # Rofi shutdown/reboot
 alt + Escape
@@ -60,9 +53,9 @@ alt + Escape
 alt + u
     /home/alaa/.local/bin/rofi_wifi.sh
 
-# Rofi code workspace
-alt + c 
-    rofi -show filebrowser
+# st terminal
+#alt + shift + Return
+#    xfce4-terminal
 
 ##############################
 # SUPER + SHIFT KEYS

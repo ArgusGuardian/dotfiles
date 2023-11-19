@@ -5,10 +5,10 @@
 # SUPER + KEYS
 ##############################
 
-# Brave-browser
+# thorium
 super + b
     brave-browser
-
+   
 # ChatGpt
 super + g 
     brave-browser --app=https://chat.openai.com
@@ -20,14 +20,13 @@ super + n
 # Telegram
 super + t
     brave-browser --app=https://web.telegram.org/
-
 # Discord
 super + d
     flatpak run com.discordapp.Discord
 
 # xfce4-terminal
-# alt + Return
-#     xfce4-terminal
+#alt + Return
+#    xfce4-terminal
 
 # Xkill
 super + Escape
@@ -37,9 +36,6 @@ super + Escape
 control + shift + s
     flameshot gui
 
-# flameshot screenshot
-super + alt + s
-    flameshot full -p /home/alaa/Pictures/Screenshots/
 # Lockscreen
 super + l
     betterlockscreen -l
@@ -47,10 +43,6 @@ super + l
 # Clipman
 super + v
     xfce4-popup-clipman
-
-#############################
-# Rpfi keys
-#############################
 
 # Rofi shutdown/reboot
 alt + Escape
@@ -60,10 +52,9 @@ alt + Escape
 alt + u
     /home/alaa/.local/bin/rofi_wifi.sh
 
-# Rofi code workspace
-alt + c 
-    rofi -show filebrowser
 
+alt + shift + Return
+    st
 ##############################
 # SUPER + SHIFT KEYS
 ##############################
@@ -71,6 +62,10 @@ alt + c
 # File-Manager
 super + f
     thunar
+
+# dmenu
+# super + shift + m
+#     dmenu_run -i -nb '#2e3440' -nf '#81a1c1' -sb '#81a1c1' -sf '#2e3440' -fn 'SourceCodeProBoldFont:pixelsize=15'
 
 # Reload sxhkd:
 super + shift + s
@@ -84,7 +79,7 @@ alt + p
 alt + w
     rofi -show window
 
-# Thorium
+# firefox
 super + shift + b 
     thorium-browser
 
@@ -92,33 +87,38 @@ super + shift + b
 super + s
     flatpak run com.spotify.Client
 
+# # Thunderbird
+# super + shift + t
+#     thunderbird
+
 #################################################################
 # CONTROL + SHIFT KEYS
 #################################################################
 
-# Xcfe4-TaskManager
+#Xcfe4-TaskManager
 ctrl + shift + Escape
     xfce4-taskmanager
 
+
 #################################################################
-# MULTIMEDIA KEYS
+#     MULTIMEDIA KEYS
 #################################################################
 
-# Raises volume
+#Raises volume
 XF86AudioRaiseVolume
     amixer set Master 3%+
 
-# Lowers volume
+#Lowers volume
 XF86AudioLowerVolume
     amixer set Master 3%-
 
-# Mute
+#Mute
 XF86AudioMute
     amixer -D pulse set Master 1+ toggle
 
 #####################################################
 
-# Picom Toggle
+#Picom Toggle
 ctrl + alt + p
     ~/.config/qtile/scripts/picom-toggle.sh
 
@@ -127,21 +127,25 @@ alt + ctrl + r
     pkill -SIGUSR1 qtile
 
 #################################################################
-# VARIETY KEYS WITH PYWAL
+#VARIETY KEYS WITH PYWAL
 #################################################################
 
-# Wallpaper trash
+Wallpaper trash
 ctrl + super + t
     variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
 
-# Wallpaper next
+#Wallpaper next
 ctrl + super + n
     variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
 
-# Wallpaper previous
+#Wallpaper previous
 ctrl + super + p
     variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
 
 # Wallpaper favorite
 ctrl + super + f
     variety -f && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
+
+# #Wallpaper update
+# ctrl + super + u
+#     wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
