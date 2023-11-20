@@ -1,15 +1,17 @@
 #!/bin/bash
-iatest=$(expr index "$-" i)
 
 # initilizing pywal
-wal -q -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)
+#wal -q -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)
+wal -q --theme /home/alaa/.cache/wal/colors.json
+iatest=$(expr index "$-" i)
+
 #######################################################
 # SOURCED ALIAS'S AND SCRIPTS BY zachbrowne.me
 #######################################################
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
-	 . /etc/bashrc
+	. /etc/bashrc
 fi
 
 # Enable bash programmable completion features in interactive shells
@@ -77,21 +79,6 @@ export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 #######################################################
-# MACHINE SPECIFIC ALIAS'S
-#######################################################
-
-# Alias's for SSH
-# alias SERVERNAME='ssh YOURWEBSITE.com -l USERNAME -p PORTNUMBERHERE'
-
-# Alias's to change the directory
-alias web='cd /var/www/html'
-
-# Alias's to mount ISO files
-# mount -o loop /home/NAMEOFISO.iso /home/ISOMOUNTDIR/
-# umount /home/NAMEOFISO.iso
-# (Both commands done as root only.)
-
-#######################################################
 # GENERAL ALIAS'S
 #######################################################
 # To temporarily bypass an alias, we precede the command with a \
@@ -112,7 +99,6 @@ alias ps='ps auxf'
 alias ping='ping -c 10'
 alias less='less -R'
 alias cls='clear'
-alias dnf='sudo dnf'
 alias multitail='multitail --no-repeat -c'
 alias freshclam='sudo freshclam'
 alias vi='nvim'
@@ -134,20 +120,20 @@ alias bd='cd "$OLDPWD"'
 alias rmd='/bin/rm  --recursive --force --verbose '
 
 # Alias's for multiple directory listing commands
-alias la='ls -Alh' # show hidden files
+alias la='ls -Alh'                # show hidden files
 alias ls='ls -aFh --color=always' # add colors and file type extensions
-alias lx='ls -lXBh' # sort by extension
-alias lk='ls -lSrh' # sort by size
-alias lc='ls -lcrh' # sort by change time
-alias lu='ls -lurh' # sort by access time
-alias lr='ls -lRh' # recursive ls
-alias lt='ls -ltrh' # sort by date
-alias lm='ls -alh |more' # pipe through 'more'
-alias lw='ls -xAh' # wide listing format
-alias ll='ls -Fls' # long listing format
-alias labc='ls -lap' #alphabetical sort
-alias lf="ls -l | egrep -v '^d'" # files only
-alias ldir="ls -l | egrep '^d'" # directories only
+alias lx='ls -lXBh'               # sort by extension
+alias lk='ls -lSrh'               # sort by size
+alias lc='ls -lcrh'               # sort by change time
+alias lu='ls -lurh'               # sort by access time
+alias lr='ls -lRh'                # recursive ls
+alias lt='ls -ltrh'               # sort by date
+alias lm='ls -alh |more'          # pipe through 'more'
+alias lw='ls -xAh'                # wide listing format
+alias ll='ls -Fls'                # long listing format
+alias labc='ls -lap'              #alphabetical sort
+alias lf="ls -l | egrep -v '^d'"  # files only
+alias ldir="ls -l | egrep '^d'"   # directories only
 
 # alias chmod commands
 alias mx='chmod a+x'
@@ -198,13 +184,25 @@ alias ungz='tar -xvzf'
 # Show all logs in /var/log
 alias logs="sudo find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f"
 
+# LAST ALIASES:
+alias petty=pycodestyle
+alias ranger='. ranger'
+alias disku='ncdu'
+alias valgrind='valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes'
+alias speed='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
+alias brc='vim ~/.bashrc'
+alias qtile='vim ~/.config/qtile/config.py'
+alias fonts='fc-cache -fv'
+alias neofetch='neofetch --ascii_distro fedora_small'
+alias !!='sudo !!'
+alias update='sudo dnf update'
+alias install='sudo dnf install'
 #######################################################
 # SPECIAL FUNCTIONS
 #######################################################
 
 # Use the best version of pico installed
-edit ()
-{
+edit() {
 	if [ "$(type -t jpico)" = "file" ]; then
 		# Use JOE text editor http://joe-editor.sourceforge.net/
 		jpico -nonotice -linums -nobackups "$@"
@@ -216,8 +214,7 @@ edit ()
 		nvim "$@"
 	fi
 }
-sedit ()
-{
+sedit() {
 	if [ "$(type -t jpico)" = "file" ]; then
 		# Use JOE text editor http://joe-editor.sourceforge.net/
 		sudo jpico -nonotice -linums -nobackups "$@"
@@ -231,22 +228,22 @@ sedit ()
 }
 
 # Extracts any archive(s) (if unp isn't installed)
-extract () {
+extract() {
 	for archive in "$@"; do
-		if [ -f "$archive" ] ; then
+		if [ -f "$archive" ]; then
 			case $archive in
-				*.tar.bz2)   tar xvjf $archive    ;;
-				*.tar.gz)    tar xvzf $archive    ;;
-				*.bz2)       bunzip2 $archive     ;;
-				*.rar)       rar x $archive       ;;
-				*.gz)        gunzip $archive      ;;
-				*.tar)       tar xvf $archive     ;;
-				*.tbz2)      tar xvjf $archive    ;;
-				*.tgz)       tar xvzf $archive    ;;
-				*.zip)       unzip $archive       ;;
-				*.Z)         uncompress $archive  ;;
-				*.7z)        7z x $archive        ;;
-				*)           echo "don't know how to extract '$archive'..." ;;
+			*.tar.bz2) tar xvjf $archive ;;
+			*.tar.gz) tar xvzf $archive ;;
+			*.bz2) bunzip2 $archive ;;
+			*.rar) rar x $archive ;;
+			*.gz) gunzip $archive ;;
+			*.tar) tar xvf $archive ;;
+			*.tbz2) tar xvjf $archive ;;
+			*.tgz) tar xvzf $archive ;;
+			*.zip) unzip $archive ;;
+			*.Z) uncompress $archive ;;
+			*.7z) 7z x $archive ;;
+			*) echo "don't know how to extract '$archive'..." ;;
 			esac
 		else
 			echo "'$archive' is not a valid file!"
@@ -255,8 +252,7 @@ extract () {
 }
 
 # Searches for text in all files in the current folder
-ftext ()
-{
+ftext() {
 	# -i case-insensitive
 	# -I ignore binary files
 	# -H causes filename to be printed
@@ -268,11 +264,10 @@ ftext ()
 }
 
 # Copy file with a progress bar
-cpp()
-{
+cpp() {
 	set -e
-	strace -q -ewrite cp -- "${1}" "${2}" 2>&1 \
-	| awk '{
+	strace -q -ewrite cp -- "${1}" "${2}" 2>&1 |
+		awk '{
 	count += $NF
 	if (count % 10 == 0) {
 		percent = count / total_size * 100
@@ -289,9 +284,8 @@ cpp()
 }
 
 # Copy and go to the directory
-cpg ()
-{
-	if [ -d "$2" ];then
+cpg() {
+	if [ -d "$2" ]; then
 		cp "$1" "$2" && cd "$2"
 	else
 		cp "$1" "$2"
@@ -299,9 +293,8 @@ cpg ()
 }
 
 # Move and go to the directory
-mvg ()
-{
-	if [ -d "$2" ];then
+mvg() {
+	if [ -d "$2" ]; then
 		mv "$1" "$2" && cd "$2"
 	else
 		mv "$1" "$2"
@@ -309,21 +302,18 @@ mvg ()
 }
 
 # Create and go to the directory
-mkdirg ()
-{
+mkdirg() {
 	mkdir -p "$1"
 	cd "$1"
 }
 
 # Goes up a specified number of directories  (i.e. up 4)
-up ()
-{
+up() {
 	local d=""
 	limit=$1
-	for ((i=1 ; i <= limit ; i++))
-		do
-			d=$d/..
-		done
+	for ((i = 1; i <= limit; i++)); do
+		d=$d/..
+	done
 	d=$(echo $d | sed 's/^\///')
 	if [ -z "$d" ]; then
 		d=..
@@ -332,8 +322,7 @@ up ()
 }
 
 #Automatically do an ls after each cd
-cd ()
-{
+cd() {
 	if [ -n "$1" ]; then
 		builtin cd "$@" && ls
 	else
@@ -342,14 +331,12 @@ cd ()
 }
 
 # Returns the last 2 fields of the working directory
-pwdtail ()
-{
-	pwd|awk -F/ '{nlast = NF -1;print $nlast"/"$NF}'
+pwdtail() {
+	pwd | awk -F/ '{nlast = NF -1;print $nlast"/"$NF}'
 }
 
 # Show the current version of the operating system
-ver ()
-{
+ver() {
 	local dtype
 	dtype=$(distribution)
 
@@ -381,8 +368,7 @@ ver ()
 }
 
 # Automatically install the needed support files for this .bashrc file
-install_bashrc_support ()
-{
+install_bashrc_support() {
 	local dtype
 	dtype=$(distribution)
 
@@ -411,32 +397,34 @@ install_bashrc_support ()
 
 # IP address lookup
 alias whatismyip="whatsmyip"
-function whatsmyip ()
-{
+
+function whatsmyip() {
 	# Dumps a list of all IP addresses for every device
 	# /sbin/ifconfig |grep -B1 "inet addr" |awk '{ if ( $1 == "inet" ) { print $2 } else if ( $2 == "Link" ) { printf "%s:" ,$1 } }' |awk -F: '{ print $1 ": " $3 }';
-	
+
 	### Old commands
 	# Internal IP Lookup
 	#echo -n "Internal IP: " ; /sbin/ifconfig eth0 | grep "inet addr" | awk -F: '{print $2}' | awk '{print $1}'
-#
-#	# External IP Lookup
+	#
+	#	# External IP Lookup
 	#echo -n "External IP: " ; wget http://smart-ip.net/myip -O - -q
-	
+
 	# Internal IP Lookup.
-	if [ -e /sbin/ip ];
-	then
-		echo -n "Internal IP: " ; /sbin/ip addr show wlan0 | grep "inet " | awk -F: '{print $1}' | awk '{print $2}'
+	if [ -e /sbin/ip ]; then
+		echo -n "Internal IP: "
+		/sbin/ip addr show wlan0 | grep "inet " | awk -F: '{print $1}' | awk '{print $2}'
 	else
-		echo -n "Internal IP: " ; /sbin/ifconfig wlan0 | grep "inet " | awk -F: '{print $1} |' | awk '{print $2}'
+		echo -n "Internal IP: "
+		/sbin/ifconfig wlan0 | grep "inet " | awk -F: '{print $1} |' | awk '{print $2}'
 	fi
 
-	# External IP Lookup 
-	echo -n "External IP: " ; curl -s ifconfig.me
+	# External IP Lookup
+	echo -n "External IP: "
+	curl -s ifconfig.me
 }
 
 # For some reason, rot13 pops up everywhere
-rot13 () {
+rot13() {
 	if [ $# -eq 0 ]; then
 		tr '[a-m][n-z][A-M][N-Z]' '[n-z][a-m][N-Z][A-M]'
 	else
@@ -445,11 +433,10 @@ rot13 () {
 }
 
 # Trim leading and trailing spaces (for scripts)
-trim()
-{
+trim() {
 	local var=$*
-	var="${var#"${var%%[![:space:]]*}"}"  # remove leading whitespace characters
-	var="${var%"${var##*[![:space:]]}"}"  # remove trailing whitespace characters
+	var="${var#"${var%%[![:space:]]*}"}" # remove leading whitespace characters
+	var="${var%"${var##*[![:space:]]}"}" # remove trailing whitespace characters
 	echo -n "$var"
 }
 # GitHub Titus Additions
@@ -457,7 +444,7 @@ trim()
 gcom() {
 	git add .
 	git commit -m "$1"
-	}
+}
 lazyg() {
 	git add .
 	git commit -m "$1"
@@ -482,15 +469,4 @@ elif [ -f "/usr/share/autojump/autojump.bash" ]; then
 else
 	echo "can't found the autojump script"
 fi
-
-
-# LAST ALIASES:
-alias petty=pycodestyle
-alias ranger='. ranger'
-alias disku='ncdu'
-alias valgrind='valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes'
-alias speed='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
-alias brc='vim ~/.bashrc'
-alias qtile='vim ~/.config/qtile/config.py'
-alias fonts='fc-cache -fv'
 
