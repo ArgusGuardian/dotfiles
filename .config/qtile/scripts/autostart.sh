@@ -26,10 +26,12 @@ picom --config $HOME/.config/qtile/scripts/picom.conf &
 #/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
 /usr/bin/dunst &
-xdm-app &
-
+#xdm-app &
+light-locker &
 # clipboard startup
 xfce4-clipman &
 
 # User Applications #
-run volumeicon &
+# run volumeicon &
+# start the synching on local network
+#syncthing &

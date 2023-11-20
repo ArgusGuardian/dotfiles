@@ -49,12 +49,12 @@ sudo dnf -y update
 echo "system updated\n"
 
 # Add repositories
-add_repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+#add_repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
 dnf copr enable frostyx/qtile
 
 # Install essentials
 packages=(
-	rofi newsboat unzip lxappearance qt5ct nitrogen sxhkd picom qtile qtile-extras dunst network-manager-applet xfce4-power-manager numlockx blueman xfce-polkit xfce4-notifyd xfce4-notifyd volumeicon kitty ranger brave-browser bleachbit btop mpv flameshot geany neofetch thunar catfish eog gnome-disk-utility celluloid timeshift xfce4-terminal git curl neovim python3-neovim variety imagemagick
+	rofi volumeicon light-locker newsboat unzip lxappearance qt5ct nitrogen sxhkd picom qtile qtile-extras dunst network-manager-applet xfce4-power-manager numlockx blueman xfce-polkit xfce4-notifyd xfce4-notifyd volumeicon kitty ranger brave-browser bleachbit btop mpv flameshot geany neofetch thunar catfish eog gnome-disk-utility celluloid timeshift xfce4-terminal git curl neovim python3-neovim variety imagemagick
 )
 
 echo "installing packages\n"
@@ -86,9 +86,10 @@ cd mybash
 echo "Terminal theme setup complete.\n"
 cd ..
 
-# installing nvchad
-echo "installing nvchad...\n"
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+# installing lazyvim
+echo "installing lazyvim...\n"
+git clone https://github.com/LazyVim/starter ~/.config/nvim
+rm -rf ~/.config/nvim/.git
 
 # Copy configuration files
 config_files=(
@@ -105,8 +106,7 @@ for file in "${config_files[@]}"; do
 	sudo cp -r $file /home/$User/
 done
 
-sudo cp rofi/rofi-power-menu /home/$User/.local/bin/
-sudo cp -r rofi/rofi /home/$User/.local/share/
+sudo cp rofi/* /home/$User/.local/bin/
 
 echo "Setup complete!\n"
 echo "run neovim to complete the nvchad installation\n"

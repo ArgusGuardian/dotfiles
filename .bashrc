@@ -2,7 +2,8 @@
 
 # initilizing pywal
 #wal -q -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)
-wal -q --theme /home/alaa/.cache/wal/colors.json
+# wal -q --theme /home/alaa/.cache/wal/colors.json
+
 iatest=$(expr index "$-" i)
 
 #######################################################
