@@ -86,7 +86,7 @@
     <property name="plugin-15" type="string" value="notification-plugin"/>
     <property name="plugin-16" type="string" value="pulseaudio">
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
-      <property name="known-players" type="string" value="firefox;spotify;Thorium"/>
+      <property name="known-players" type="string" value="Brave;firefox;io.github.celluloid_player.Celluloid;pragha;spotify;Thorium"/>
     </property>
     <property name="plugin-27" type="string" value="xkb">
       <property name="display-scale" type="uint" value="57"/>
@@ -97,6 +97,8 @@
     </property>
     <property name="plugin-1" type="string" value="systray">
       <property name="known-legacy-items" type="array">
+        <value type="string" value="pragha music player"/>
+        <value type="string" value="xdm-app"/>
         <value type="string" value="wi-fi network connection “tp-link” active: tp-link (45%)"/>
         <value type="string" value="wi-fi network connection “tp-link” active: tp-link (53%)"/>
         <value type="string" value="wi-fi network connection “tp-link” active: tp-link (42%)"/>
@@ -111,9 +113,26 @@
         <value type="string" value="wi-fi network connection “lstr” active: lstr (46%)"/>
       </property>
       <property name="known-items" type="array">
+        <value type="string" value="blueman"/>
+        <value type="string" value="variety"/>
         <value type="string" value="flameshot"/>
         <value type="string" value="dnfdragora-updater"/>
+      </property>
+      <property name="icon-size" type="int" value="0"/>
+      <property name="single-row" type="bool" value="false"/>
+      <property name="square-icons" type="bool" value="false"/>
+      <property name="hide-new-items" type="bool" value="true"/>
+      <property name="hidden-items" type="array">
+        <value type="string" value="dnfdragora-updater"/>
+        <value type="string" value="variety"/>
         <value type="string" value="blueman"/>
+        <value type="string" value="flameshot"/>
+      </property>
+      <property name="hidden-legacy-items" type="array">
+        <value type="string" value="networkmanager applet"/>
+        <value type="string" value="clipman"/>
+        <value type="string" value="xdm-app"/>
+        <value type="string" value="pragha music player"/>
       </property>
     </property>
   </property>

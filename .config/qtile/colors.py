@@ -1,3 +1,33 @@
+import json
+
+def pywal():
+    json_file_path = '/home/alaa/.cache/wal/colors.json'
+    with open(json_file_path, 'r') as file:
+        json_data = json.load(file)
+    
+    # Extract colors from the JSON data
+    colors = [
+        [json_data['colors']['color0'], json_data['colors']['color0']],  # background (dark grey) [0]
+        [json_data['colors']['color1'], json_data['colors']['color1']],  # light grey [1]
+        [json_data['colors']['color2'], json_data['colors']['color2']],  # foreground (white) [2]
+        [json_data['colors']['color3'], json_data['colors']['color3']],  # blue [3]
+        [json_data['colors']['color4'], json_data['colors']['color4']],
+        [json_data['colors']['color5'], json_data['colors']['color5']],  # green [5]
+        [json_data['colors']['color6'], json_data['colors']['color6']],  # orange [6]
+        [json_data['colors']['color7'], json_data['colors']['color7']],  # pink [7]
+        [json_data['colors']['color8'], json_data['colors']['color8']],  # purple [8]
+        [json_data['colors']['color9'], json_data['colors']['color9']],  # red [9]
+        [json_data['colors']['color10'], json_data['colors']['color10']]  # yellow [10]
+    ]
+
+    backgroundColor = json_data['special']['background']
+    foregroundColor = json_data['special']['foreground']
+    workspaceColor = json_data['colors']['color4']  # You can choose any color from the list
+    foregroundColorTwo = json_data['colors']['color7']
+
+    return colors, backgroundColor, foregroundColor, workspaceColor, foregroundColorTwo
+
+
 #Dracula
 def dracula():
 	colors = [["#282a36", "#282a36"],  #background (dark grey) [0]
@@ -18,6 +48,25 @@ def dracula():
 	foregroundColorTwo = "#44475a"
 	return colors, backgroundColor, foregroundColor, workspaceColor, foregroundColorTwo
 
+#Dracula
+def sample():
+	colors = [ ["#001B6B", "#001B6B"],  #background (dark grey) [0]
+			   ["#102F8D", "#102F8D"],  #light grey [1]
+			   ["#f8f8f2", "#f8f8f2"],  #foreground (white) [2]
+			   ["#6272a4", "#6272a4"],  #blue/grey) [3]
+			   ["#A9003E", "#A9003E"],  #cyan [4]
+			   ["#0A2069", "#0A2069"],  #green [5]
+			   ["#2F4689", "#2F4689"],  #orange [6]
+			   ["#41579B", "#41579B"],  #pink [7]
+			   ["#4A3897", "#4A3897"],  #purple [8]
+			   ['#0A2166', '#0A2166'],  #red [9]
+			   ["#200057", "#200057"]]  #yellow [10]
+			   
+	backgroundColor = "#000621"
+	foregroundColor = "#FFFFFF"
+	workspaceColor = "#bd93f9"
+	foregroundColorTwo = "#44475a"
+	return colors, backgroundColor, foregroundColor, workspaceColor, foregroundColorTwo
 #Everforest
 def everforest():
 	colors = [["#2B3339", "#2B3339"],  #background (dark grey) [0]

@@ -132,16 +132,16 @@ alt + ctrl + r
 
 # Wallpaper trash
 ctrl + super + t
-    variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
+    variety -t && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt) && pkill -SIGUSR1 qtile
 
 # Wallpaper next
 ctrl + super + n
-    variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
+    variety -n && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt) && pkill -SIGUSR1 qtile
 
 # Wallpaper previous
 ctrl + super + p
-    variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
+    variety -p && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt) && pkill -SIGUSR1 qtile
 
 # Wallpaper favorite
 ctrl + super + f
-    variety -f && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt)&
+    variety -f && wal -i $(cat $HOME/.config/variety/wallpaper/wallpaper.jpg.txt) && pkill -SIGUSR1 qtile

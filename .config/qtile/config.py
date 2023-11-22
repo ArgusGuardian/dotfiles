@@ -22,7 +22,7 @@ mod = "mod1"
 mod1 = "mod4"
 terminal = "kitty"
 
-colors, backgroundColor, foregroundColor, workspaceColor, chordColor = colors.nord()
+colors, backgroundColor, foregroundColor, workspaceColor, chordColor = colors.pywal()
 
 keys = [
 # Open terminal
@@ -109,14 +109,35 @@ keys = [
 ]
 
 # Create labels for groups and assign them a default layout.
-groups = []
+groups = [
+    Group("1", label=" ", matches=[
+        Match(wm_class=["brave-browser"]),
+        #Match(wm_class=[""])
+    ]),
+    Group("2", label=" ", matches=[
+        Match(wm_class=["code"]),
+        Match(wm_class=["crx_jckaldkomadaenmmgladeopgmfbahfjm"]),
+    ]),
+    Group("3", label=" ", matches=[
+    #    Match(wm_class=["kitty"]),
+    ]),
+    Group("4", label=" ",matches=[
+        Match(wm_class=["discord", "com.discordapp.Discord"]),
+        Match(wm_class=["crx_jgeocpdicgmkeemopbanhokmhcgcflmi"]),
+        Match(wm_class=["crx_ibblmnobmgdmpoeblocemifbpglakpoi"])
+    ]),
+    Group("5",label=" ", matches=[
+        Match(wm_class=["spotify", "com.spotify.Client"]),
+        Match(wm_class=["crx_hgcaoabapmlebibdjkcfofncbjceblop"])
+    ])
+]
 
 group_names = ["1", "2", "3", "4", "5"]
 
 group_labels = [" ", " ", " ", " ", " "]
 #group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
 
-group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "max"]
+group_layouts = ["monadtall", "monadtall", "monadtall", "monadthreecol", "max"]
 
 # Add group names, labels, and default layouts to the groups object.
 for i in range(len(group_names)):
@@ -230,7 +251,7 @@ def init_widgets_list(monitor_num):
             display_format=' 󰬬  {updates} ',
             colour_have_updates=foregroundColor,
             colour_no_updates=foregroundColor,
-            background=colors[7],
+            background=colors[4],
             update_interval=43200,
             decorations=[
                 #  BorderDecoration(
@@ -254,19 +275,17 @@ def init_widgets_list(monitor_num):
 			foreground = foregroundColor,
 			background = backgroundColor,
         ),
-        widget.Sep(linewidth = 1, padding = 10, foreground = colors[0],background = colors[0]),
-        widget.Sep(linewidth = 1, padding = 10, foreground = colors[0],background = backgroundColor),
-        widget.Systray(
-             background = backgroundColor, 
-             icon_size = 20, 
-             padding = 4,
-             ),
+        #widget.Systray(
+        #    background = backgroundColor, 
+        #    icon_size = 20, 
+        #    padding = 4,
+        #    ),
         widget.Spacer(length = 8),
         widget.Net(
             format=' 󰬦 {down} ',
             font = "IosevkaTerm Nerd Font Bold",
             foreground = foregroundColor,
-            background=colors[3],
+            background=colors[1],
             padding = 3,
             padding_y = -3,
             decorations=[
@@ -290,7 +309,7 @@ def init_widgets_list(monitor_num):
             font = "IosevkaTerm Nerd Font Bold",
             update_interval = 1.0,
             foreground = foregroundColor,
-            background=colors[7],
+            background=colors[2],
             padding = 5,
             format = '󰗶  {freq_current}/{load_percent}% ',
             decorations=[
@@ -315,7 +334,7 @@ def init_widgets_list(monitor_num):
         widget.Memory(
             font = "IosevkaTerm Nerd Font Bold",
             foreground = foregroundColor,
-            background=colors[6],
+            background=colors[3],
             format = "  {MemPercent}%",
             measure_mem='G',
             padding = 5,
@@ -343,7 +362,7 @@ def init_widgets_list(monitor_num):
 			font = "IosevkaTerm Nerd Font Bold",
             display_map={'us':'🇺🇸','ar':'🇲🇦'},
             foreground = foregroundColor,
-            background=colors[3],
+            background=colors[4],
             decorations=[
                     #  BorderDecoration(
                     #      colour = colors[6],
@@ -367,7 +386,7 @@ def init_widgets_list(monitor_num):
             foreground = foregroundColor,
             low_foreground='#eb4034',
             low_percentage=0.2,
-            background=colors[4],
+            background=colors[5],
             update_interval = 180,
             full_char=' 󰁹 100%',
             decorations=[
