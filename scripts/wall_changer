@@ -1,0 +1,80 @@
+#!/bin/bash
+
+# Directory containing wallpapers
+wallpaper_dir="$HOME/Pictures/wallpapers/fav_walls"
+config_file="$HOME/.config/wall_changer/config"
+current_wallpaper_file="$HOME/.config/wall_changer/current_wallpaper.txt"
+
+# Check if Nitrogen is installed
+if ! command -v nitrogen &>/dev/null; then
+	echo "Error: Nitrogen is not installed. Please install Nitrogen."
+	exit 1
+fi
+
+# Check if the wallpaper directory exists
+if [ ! -d "$wallpaper_dir" ]; then
+	echo "Error: Wallpaper directory does not exist."
+	exit 1
+fi
+
+# Function to set the wallpaper
+set_wallpaper() {
+	nitrogen --set-zoom-fill "$1"
+	echo "$1" >"$current_wallpaper_file"
+}
+
+# Function to get the next wallpaper index
+get_next_index() {
+	local direction=$1
+	local next_index
+
+	if [ "$direction" == "next" ]; then
+		next_index=$(((current_index + 1) % total_images))
+	elif [ "$direction" == "prev" ]; then
+		next_index=$(((current_index - 1 + total_images) % total_images))
+	fi
+
+	echo "$next_index"
+}
+
+# Load configuration if it exists
+if [ -f "$config_file" ]; then
+	source "$config_file"
+	total_images=${#image_files[@]}
+fi
+
+# Get a list of all image files in the wallpaper directory if not loaded from config
+if [ -z "$total_images" ]; then
+	image_files=("$wallpaper_dir"/*.jpg "$wallpaper_dir"/*.png)
+	total_images=${#image_files[@]}
+fi
+
+# Get the total number of images
+total_images=${#image_files[@]}
+
+# Process command line arguments
+if [ "$#" -eq 1 ]; then
+	case "$1" in
+	-n) # Next wallpaper
+		next_index=$(get_next_index "next")
+		set_wallpaper "${image_files[next_index]}"
+		;;
+	-p) # Previous wallpaper
+		prev_index=$(get_next_index "prev")
+		set_wallpaper "${image_files[prev_index]}"
+		;;
+	*)
+		echo "Invalid argument. Use -n for next or -p for previous."
+		exit 1
+		;;
+	esac
+
+	# Save the current index to the configuration file
+	echo "current_index=$next_index" >"$config_file"
+	echo "image_files=(${image_files[@]})" >>"$config_file"
+else
+	echo "Usage: $0 [-n | -p]"
+	exit 1
+fi
+
+exit 0
